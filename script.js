@@ -1,3 +1,10 @@
+const buttons =  document.querySelectorAll('button')
+const playerScoreElement = document.querySelector('#player-score')
+const computerScoreElement = document.querySelector('#computer-score')
+
+let playerScore = 0
+let computerScore = 0
+
 const getComputerChoice = function() {
     const choices = ['Rock', 'Paper', 'Scissors']
     return choices[Math.floor(Math.random() * 3)]    
@@ -33,18 +40,11 @@ const playRound = function(playerSelection, computerSelection) {
 
 }
 
-const buttons =  document.querySelectorAll('button')
-
 buttons.forEach( (button) => {
     addEventListener('click', () => {
         playRound(getComputerChoice(), button.id)
     })
 })
 
-let playerScore = 0
-let computerScore = 0
-
-const playerScoreElement = document.querySelector('#player-score')
-const computerScoreElement = document.querySelector('#computer-score')
 
 
