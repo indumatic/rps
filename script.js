@@ -7,20 +7,44 @@ const playRound = function(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase()
     computerSelection = computerSelection.toLowerCase()
 
+    const result = document.querySelector("#result")
+    let message = ""
+
     if( playerSelection === "rock" && computerSelection === "scissors" ||
         playerSelection === "scissors" && computerSelection === "paper" ||
         playerSelection === "paper" && computerSelection === "rock"){
-        return "You win! " + playerSelection + " beats " + computerSelection
+        message = "You win! " + playerSelection + " beats " + computerSelection
+        playerScore ++
     }
     else if( playerSelection === "rock" && computerSelection === "paper" ||
             playerSelection === "scissors" && computerSelection === "rock" ||
             playerSelection === "paper" && computerSelection === "scissors") {
-        return "You lose! " + computerSelection + " beats " + playerSelection
+        message =  "You lose! " + computerSelection + " beats " + playerSelection
+        computerScore ++
     }
     else {
-        return "It's a draw!"
+        message =  "It's a draw!"
     }
+
+    result.textContent = message
+
+    playerScoreElement.textContent = "Player score: " + playerScore
+    computerScoreElement.textContent = "Computer score: " + computerScore
 
 }
 
-console.log(playRound("rock",getComputerChoice()))
+const buttons =  document.querySelectorAll('button')
+
+buttons.forEach( (button) => {
+    addEventListener('click', () => {
+        playRound(getComputerChoice(), button.id)
+    })
+})
+
+let playerScore = 0
+let computerScore = 0
+
+const playerScoreElement = document.querySelector('#player-score')
+const computerScoreElement = document.querySelector('#computer-score')
+
+
